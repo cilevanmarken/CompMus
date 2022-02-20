@@ -1,7 +1,5 @@
-# CompMus
-This portfolio can be divided into two groups: on one hand 50 songs that are played in clubs. On the other hand, songs that were the most popular when my grandpa was young. My grandpa loved to dance and did so regularly to his music. Nowadays, we still dance, but the way in which we do differs a lot from back in the day. 
-Are there any similarities between these two groups of dancemusic? And on what points do they differ? 
+# Computational Musicology
+For this course we were asked to analyse a music corpus using the Spotify API. The Spotify API has computes various features of music, that can be used for an analysis.
 
-To compare these groups of music, they are analysed using the SpotifyAPI. I myself am very curious to see what the SpotifyAPI says about the 'dansibility' of both music sorts. What is Spotify's definition of dance? 
-
-My guess is that music nowadays is simpler than the music back then. I also think that vocals have become more important in dance music over time. To make sure that this is an inclusive corpus, songs from the most popular artist then and now will be used.
+# The research
+The main question for this analysis is: what makes a good Eurosongfestival song? The best EuroSongfestivals make it to the Grand Final. I have therefore chosen to analyse the songs that made it to the final (and won). One final contains around 26 songs, meaning I will analyse the last 38 finals. I want to see if there is a trend over time in songs that are succesfull. 
