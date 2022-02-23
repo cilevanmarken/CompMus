@@ -20,9 +20,5 @@ Eurovision songs come in a wide variety. The winning songs differ a lot from eac
 # First plot
 The first plot shows the means of danceability, energy and valence over the last 10 years of Eurovision. Turns out that these features are very constant over time. The energy of Eurovision songs is quite high in the last ten years (around 0.7). The valence is rather constant arounf 0.5 and the danceability remains around 0.6. These graphs will be expanded to the last 40 years and will be plotted on the same axes next time. I am also planning on making a division between songs that scored the most points.
 
-You can also embed plots, for example:
 
-```{r energy / valence / danceability, echo=FALSE}
-plot(pressure)
-```
 
