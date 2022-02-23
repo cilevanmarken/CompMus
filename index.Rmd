@@ -24,7 +24,8 @@ The first plot shows the means of danceability, energy and valence over the last
 ```{r, echo = FALSE, message = FALSE}
 load("~/CompMus/workspace_data.RData")
 library(patchwork)
-energy / valence / danceability
+library(ggplotly)
+ggplotly(energy / valence / danceability)
 
 ```
 
