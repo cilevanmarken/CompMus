@@ -2,30 +2,80 @@
 title: "Eurovision Analysis"
 author: "Cile van Marken"
 date: '2022-02-20'
-output: html_document
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    storyboard: true
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(flexdashboard)
+library(readr)
+library(tidyverse)
+library(lubridate)
+library(plotly)
+library(patchwork)
+library(spotifyr)
+library(compmus)
 ```
 
-# Computational Musicology
+# Introduction
+
+### Computational Musicology
 For this course we were asked to analyse a music corpus using the Spotify API. The Spotify API has computes various features of music, that can be used for an analysis.
 
-# The corpus
+### The corpus
 The main question for this analysis is: what makes a good Eurosongfestival song? The best EuroSongfestivals make it to the Grand Final. I have therefore chosen to analyse the songs that made it to the final (and won). One final contains around 26 songs, meaning I will analyse the last 38 finals. I want to see if there is a trend over time in songs that are succesfull. 
 
 Eurovision songs come in a wide variety. The winning songs differ a lot from eachother. Some songs that stand out are "Amor pelos dos" by Salvador Sobral and "Toy" by Netta. "Amor pelos dos" is a beautiful song that won Eurovision in 2017. It is quite classical for Eurovision, without any fuzz, dancers or ligths. "Toy", wich won the final in 2018, is on the other end of the spectrum compared to "Amor pelos dos".
 
-# First plot
+
+
+# Visualisation I
 The first plot shows the means of danceability, energy and valence over the last 10 years of Eurovision. Turns out that these features are very constant over time. The energy of Eurovision songs is quite high in the last ten years (around 0.7). The valence is rather constant arounf 0.5 and the danceability remains around 0.6. These graphs will be expanded to the last 40 years and will be plotted on the same axes next time. I am also planning on making a division between songs that scored the most points.
 
+```{r, echo = FALSE, message = FALSE, fig.height=11}
 
-```{r, echo = FALSE, message = FALSE}
 load("~/CompMus/workspace_data.RData")
-library(patchwork)
-library(ggplotly)
 ggplotly(energy / valence / danceability)
 
 ```
+
+
+# Visualisation II
+
+### Chromagram {height = "20%"}
+Here you can see a chromatogram for the song "Ein bisschien Frieden" by Nicole, that won the songfestival in 1982. Because of everything that is going on now in Ukraine, I thought it was fitting to choose this song. The song is clearly centered arounf C# for the most part. The last part of the song is centered around D, which is in compliance with the song: you can clearly hear the difference in pitch. 
+
+"Ein bisschen frieden, ein bisschen sonne
+Für diese erde, auf der wir wohnen.
+Ein bisschen frieden, ein bisschen freude,
+Ein bisschen wärme, das wunsch ich mir."
+
+### The plot
+
+```{r, echo = FALSE, message = FALSE}
+
+load("~/CompMus/workspace_data.RData")
+wood %>%
+    mutate(pitches = map(pitches, compmus_normalise, "euclidean")) %>%
+    compmus_gather_chroma() %>% 
+    ggplot(
+        aes(
+            x = start + duration / 2,
+            width = duration,
+            y = pitch_class,
+            fill = value
+        )
+    ) +
+    geom_tile() +
+    labs(x = "Time (s)", y = NULL, fill = "Magnitude") +
+    theme_minimal() +
+    scale_fill_viridis_c()
+```
+
+# Discussion
+
 
