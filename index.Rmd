@@ -27,8 +27,20 @@ library(broom)
 
 
 # include environment
-load("~/CompMus/workspace_data.RData")
+load("~/CompMus/R_data.RData")
 ```
+
+### Chordogram: Hard Rock Hallelujah {data-commentary-width=600}
+
+
+```{r, echo = FALSE, message = FALSE}
+plot(lordiplot)
+```
+
+***
+
+Chordogram: Hard Rock Hallelujah
+
 
 ### The typical Eurovision song {data-commentary-width=600}
 
