@@ -27,8 +27,45 @@ library(broom)
 
 
 # include environment
-load("~/CompMus/R_data.RData")
+load("~/CompMus/R_data2.RData")
 ```
+
+
+### Sonfestival trough time {data-commentary-width=600}
+
+<iframe width="1240" height="703" src="https://www.youtube.com/embed/DPzoydLh5YY" title="YouTube video player" frameborder="40" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+***
+
+My little sister is named after the song "Kleine kokette Katinka" by the Spelbrekers. This Dutch song, Netherland's submission for the Eurovision song contest in 1962, was the first song ever in the history of Eurovision to receive 0 points. I always thought this was very funny, and teased my sister with it. 
+
+Since 1956, the Eurovision songfestival has been held every year (apart from 2020), making it the longest-running annual international televised music competition and one of the world's longest-running television programmes. What do you need to compete as a country? An original song of three minutes or less, to be performed live by an artist or group. 
+
+My questions are the following: what trend can be seen in the song performed on Eurovision over time? And is it possible to device a global trend in music based on this? Is there a magic formula for making a succesful and maybe even winning track? 
+
+To do this, a corpus has been created containing the songs from the grand finale of Eurovision from 1980-2020, which sums up to 965 songs in total. I will try to find the answers to these questions analyzing this corpus using the Spotify API. The Spotify API has computes various features of music, like valence, danceability, energy and much more. 
+
+What stands out about the corpus is the variety in the songs. These range from beutiful calm jazz waltzs like "Amar pelos dos" by Salvador Sobral (winner of 2017) to "Hard Rock Hallelujah", a, as the name might suggest, hard rock song performed by Lordi (winner of 2007). 
+
+Besides looking into the trends in Eurovision songs, I am also interested in seeing if the development in Eurovision music is similar to the development of music in general. Research shows that over time the timbral palette gets more homogene, pitch transitions get more restricted and levels of loudness grow (Serrà, Corral, Boguñá, Haro, Arcos, 2012).
+
+
+### Tempo {data-commentary-width=600}
+
+```{r, echo = FALSE, message = FALSE}
+plot(dist_temp)
+plot(Mean_tempo)
+
+```
+
+***
+
+In the line plot the development of mean tempo over time is shown. There is no clear trend visible. The mean tempo does stay neatly between 110 and 135 BPM, which is the average tempo of music in general. 
+
+In the histogram the distribution of tempi is shown of all the songfestival songs since 1980. The peak is at 120-130 BPM. The slowest tracks are "Moj Svijet" by Sergej Cetkovic, with a BPM of 53 and "Why Angels Cry" by Annet Artani with a BPM of 57. Both songs are calming and have a bit of a dramatic air to them.
+
+The highest tempo with 216 BPM is ironically "Standing Still" by Roman Lob. When listening to the song however, it is clear that it does not have a very high tempo, but rather a slow one. --Explanation why Spotify messed up--
+
 
 ### Chordogram: Hard Rock Hallelujah {data-commentary-width=600}
 
@@ -73,24 +110,6 @@ What stands out in the SSM's is the huge blocks of homogeneity, that are repeate
 
 These repeated blocks of homogeneity can be one of the causes for the 'generic' feelings of the song. Their structure is simple and large parts (probably verses and choruses) are repeated. The instruments used don't show a wide range of variety, and there aren't parts of the song that particularly stand out except short moments, denoted by the yellow horizontal and vertical lines. 
 
-
-### Sonfestival trough time {data-commentary-width=600}
-
-![](https://youtu.be/DPzoydLh5YY)
-
-***
-
-My little sister is named after the song "Kleine kokette Katinka" by the Spelbrekers. This Dutch song, Netherland's submission for the Eurovision song contest in 1962, was the first song ever in the history of Eurovision to receive 0 points. I always thought this was very funny, and teased my sister with it. 
-
-Since 1956, the Eurovision songfestival has been held every year (apart from 2020), making it the longest-running annual international televised music competition and one of the world's longest-running television programmes. What do you need to compete as a country? An original song of three minutes or less, to be performed live by an artist or group. 
-
-My questions are the following: what trend can be seen in the song performed on Eurovision over time? And is it possible to device a global trend in music based on this? Is there a magic formula for making a succesful and maybe even winning track? 
-
-To do this, a corpus has been created containing the songs from the grand finale of Eurovision from 1980-2020, which sums up to 965 songs in total. I will try to find the answers to these questions analyzing this corpus using the Spotify API. The Spotify API has computes various features of music, like valence, danceability, energy and much more. 
-
-What stands out about the corpus is the variety in the songs. These range from beutiful calm jazz waltzs like "Amar pelos dos" by Salvador Sobral (winner of 2017) to "Hard Rock Hallelujah", a, as the name might suggest, hard rock song performed by Lordi (winner of 2007). 
-
-Besides looking into the trends in Eurovision songs, I am also interested in seeing if the development in Eurovision music is similar to the development of music in general. Research shows that over time the timbral palette gets more homogene, pitch transitions get more restricted and levels of loudness grow (Serrà, Corral, Boguñá, Haro, Arcos, 2012).
 
 
 
