@@ -29,14 +29,34 @@ library(thematic)
 
 
 # include environment
-load("~/CompMus/R_data2.RData")
+load("~/CompMus/R_data.RData")
 ```
+
+### Can we predict a succesfull Eurovision track? {data-commentary-width=600}
+
+```{r, fig.show="hold", out.width="35%", echo = FALSE, message = FALSE}
+
+plot(dendorgram + theme_minimal() + ggtitle("Dendogram of Eurovision 2020"))
+#ggplotly(IMPORTANCE + theme_minimal() + ggtitle("Features sorted on importance"))
+```
+![Distribution of best and worst scoring Eurovision songs](cluster.png)
+***
+
+Past analyses have shown how trends in Eurovision songs change over time, how some songs that are seen as 'generic' look in chroma and timbre SSMs and how research about music in general is similar or not to Eurovision music. The main question still remains unanswered: is it possible to predict if a song is successful or not on Eurovision based on it's features? To investigate this, different techniques where used.
+
+**Dendogram**
+
+First, dendograms where used to see how similar songs where based on the Spotify track features from one year of Eurovision. The top 5 consisted out of the songs "Think about things", "Fai Rumore", "UNO", "Move" and "YES". The lowest 5 consisted out of "Da Vidna", "FREAKY!", "YOU", "Prison" and "Divli Vietre". It is clear from the dendogram that the different classes of sons (top 5 or lowest 5) aren't really similar to each other. UNO, which ended third, is very different from the all other songs. "Divli Vietre", which ended in last place, is rather similar to "Fai Rumore", which ended second. The same thing goed for "You" and "Move". This dendogram only shows similarity for one year, but could give some insight: making predictions on classes that aren't very similar to one another might not give the best results.
+
+**Random Forest**
+
+Next up, two playlists were made containing the top 5 best or worst scoring songs for every year. These playlists were used to make a random forest model, which is a machine learning method that makes decision trees based on which features are most important for the categorization and uses these decision trees to classify a song as a 'successful' or 'unsuccessful'. The most important features were A, tempo, acousticness and timbre component 4. For class 'Successful' as well as "Unsuccessful", the precision was around 0.5, meaning that the model was able to classify a song correctly around 50% of the time. This means that the model works roughly as well as randomly assigning the songs to one of the classes. On the right, a visualization is shown based on some of the more important features: it is clear that there is a huge overlap between the two classes, so it is not weird that the model wasn't able to make sound predictions.
+
 
 
 ### Introduction: Sonfestival trough time {data-commentary-width=800}
 
 <iframe width="1240" height="703" src="https://www.youtube.com/embed/DPzoydLh5YY" title="YouTube video player" frameborder="40" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
- 
 
 ***
 
