@@ -32,39 +32,24 @@ library(thematic)
 load("~/CompMus/R_data.RData")
 ```
 
-### Can we predict a succesfull Eurovision track? {data-commentary-width=600}
 
-```{r, fig.show="hold", out.width="35%", echo = FALSE, message = FALSE}
-
-plot(dendorgram + theme_minimal() + ggtitle("Dendogram of Eurovision 2020"))
-#ggplotly(IMPORTANCE + theme_minimal() + ggtitle("Features sorted on importance"))
-```
-![Distribution of best and worst scoring Eurovision songs](cluster.png)
-***
-
-Past analyses have shown how trends in Eurovision songs change over time, how some songs that are seen as 'generic' look in chroma and timbre SSMs and how research about music in general is similar or not to Eurovision music. The main question still remains unanswered: is it possible to predict if a song is successful or not on Eurovision based on it's features? To investigate this, different techniques where used.
-
-**Dendogram**
-
-First, dendograms where used to see how similar songs where based on the Spotify track features from one year of Eurovision. The top 5 consisted out of the songs "Think about things", "Fai Rumore", "UNO", "Move" and "YES". The lowest 5 consisted out of "Da Vidna", "FREAKY!", "YOU", "Prison" and "Divli Vietre". It is clear from the dendogram that the different classes of sons (top 5 or lowest 5) aren't really similar to each other. UNO, which ended third, is very different from the all other songs. "Divli Vietre", which ended in last place, is rather similar to "Fai Rumore", which ended second. The same thing goed for "You" and "Move". This dendogram only shows similarity for one year, but could give some insight: making predictions on classes that aren't very similar to one another might not give the best results.
-
-**Random Forest**
-
-Next up, two playlists were made containing the top 5 best or worst scoring songs for every year. These playlists were used to make a random forest model, which is a machine learning method that makes decision trees based on which features are most important for the categorization and uses these decision trees to classify a song as a 'successful' or 'unsuccessful'. The most important features were A, tempo, acousticness and timbre component 4. For class 'Successful' as well as "Unsuccessful", the precision was around 0.5, meaning that the model was able to classify a song correctly around 50% of the time. This means that the model works roughly as well as randomly assigning the songs to one of the classes. On the right, a visualization is shown based on some of the more important features: it is clear that there is a huge overlap between the two classes, so it is not weird that the model wasn't able to make sound predictions.
-
-
-
-### Introduction: Sonfestival trough time {data-commentary-width=800}
+### **Introduction**: Sonfestival trough time {data-commentary-width=600}
 
 <iframe width="1240" height="703" src="https://www.youtube.com/embed/DPzoydLh5YY" title="YouTube video player" frameborder="40" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ***
 
+**Katinka**
+
 My little sister is named after the song "Kleine kokette Katinka" by the Spelbrekers. This Dutch song, Netherland's submission for the Eurovision song contest in 1962, was the first song ever in the history of Eurovision to receive 0 points. I always thought this was very funny, and teased my sister with it. Thee videoclip of "Kleine Kokkete Katinka" (shown on the right) always interested me: Eurovision has changed a lot since then.
+
+**Eurovision**
 
 Since 1956, the Eurovision song festival has been held every year (apart from 2020), making it the longest-running annual international televised music competition and one of the world's longest-running television programmes. What do you need to compete as a country? An original song of three minutes or less, to be performed live by an artist or group. This results in a wide variety of songs every year, which makes Eurovision a very interesting event to analyse musically.
 
 My questions are the following: are there trends in the Eurovision songs over time? And is it possible to device a global trend in music based on this? Is there a magic formula for making a successful and maybe even winning track? 
+
+**Corpus**
 
 To do this, a corpus has been created containing the songs from the grand finale of Eurovision from 1980-2020, which sums up to 965 songs in total. I will try to find the answers to these questions analyzing this corpus using the Spotify API. The Spotify API keeps track of various music features, like valence, danceability, energy and much more. 
 
@@ -73,13 +58,15 @@ What stands out about the corpus is the variety in the songs. These range from b
 Besides looking into the trends in Eurovision songs, I am also interested in seeing if the development in Eurovision music is similar to the development of music in general. Research shows that over time the timbral palette gets more homogene, pitch transitions get more restricted and levels of loudness grow (Serrà, Corral, Boguñá, Haro, Arcos, 2012). 
 
 
-### Big lines in Eurovision {data-commentary-width=600}
+### **Trends** in Eurovision {data-commentary-width=600}
  
 ```{r, echo = FALSE, message = FALSE}
 
 ggplotly(trends + theme_minimal() + theme(legend.title = element_blank()))
 ```
 ***
+
+**Overview**
 
 Before we can start with a depth analysis, it might be nice to get an overall look of Eurovision and some of the track-level features from the Spotify API. This first plot serves as an overview of the global trends in Eurovision songs. The means of the Spotify's API features acousticness, danceability, energy and valence are shown over time. 
 
@@ -106,7 +93,7 @@ A subtle increase in energy can be seen in the graph over time. I would attribut
 I have not yet found an explanation for the decrease in valence.
 
 
-### The typical Eurovision song {data-commentary-width=600}
+### The **typical** Eurovision song {data-commentary-width=600}
 
 
 ```{r, figures-side, fig.show="hold", out.width="33%", echo = FALSE, message = FALSE}
@@ -137,6 +124,17 @@ What stands out in the SSM's are the big blocks of homogeneity, that are repeate
 
 These repeated blocks of homogeneity can be one of the causes for the 'generic' feelings of the song. Their structure is simple and large parts (probably verses and choruses) are repeated. The instruments used don't show a wide range of variety, and there aren't parts of the song that particularly stand out except short moments, denoted by the yellow horizontal and vertical lines. 
 
+### Tempo {data-commentary-width=600}
+
+```{r, fig.show="hold", out.width="50%", echo = FALSE, message = FALSE}
+plot(Mean_tempo + theme_minimal() + ggtitle("Mean tempo over the years"))
+plot(tempo_box + ggtitle("Boxplot of tempo for the best and worst scoring songs"))
+
+```
+
+***
+
+The tempo of Eurovision songs has been analyzed in two ways: over time and between successful and unsuccessful Eurovision songs.
 
 ### Research in Eurovision
 
@@ -152,48 +150,70 @@ PLot loudness
 - loudness neemt toe
 - loudness ligt veel dichter bij elkaar
 
-### SHUM in color {data-commentary-width=600}
+
+### Can we predict a **succesfull** Eurovision track? {data-commentary-width=600}
+
+```{r, fig.show="hold", out.width="35%", echo = FALSE, message = FALSE}
+
+plot(dendorgram + theme_minimal() + ggtitle("Dendogram of Eurovision 2020"))
+#ggplotly(IMPORTANCE + theme_minimal() + ggtitle("Features sorted on importance"))
+```
+![Distribution of best and worst scoring Eurovision songs](cluster.png)
+***
+
+Past analyses have shown how trends in Eurovision songs change over time, how some songs that are seen as 'generic' look in chroma and timbre SSMs and how research about music in general is similar or not to Eurovision music. The main question still remains unanswered: is it possible to predict if a song is successful or not on Eurovision based on it's features? To investigate this, different techniques where used.
+
+**Dendogram**
+
+First, dendograms where used to see how similar songs where based on the Spotify track features from one year of Eurovision. The top 5 consisted out of the songs "Think about things", "Fai Rumore", "UNO", "Move" and "YES". The lowest 5 consisted out of "Da Vidna", "FREAKY!", "YOU", "Prison" and "Divli Vietre". It is clear from the dendogram that the different classes of sons (top 5 or lowest 5) aren't really similar to each other. UNO, which ended third, is very different from the all other songs. "Divli Vietre", which ended in last place, is rather similar to "Fai Rumore", which ended second. The same thing goed for "You" and "Move". This dendogram only shows similarity for one year, but could give some insight: making predictions on classes that aren't very similar to one another might not give the best results.
+
+**Random Forest**
+
+Next up, two playlists were made containing the top 5 best or worst scoring songs for every year. These playlists were used to make a random forest model, which is a machine learning method that makes decision trees based on which features are most important for the categorization and uses these decision trees to classify a song as a 'successful' or 'unsuccessful'. The most important features were A, tempo, acousticness and timbre component 4. For class 'Successful' as well as "Unsuccessful", the precision was around 0.5, meaning that the model was able to classify a song correctly around 50% of the time. This means that the model works roughly as well as randomly assigning the songs to one of the classes. On the right, a visualization is shown based on some of the more important features: it is clear that there is a huge overlap between the two classes, so it is not weird that the model wasn't able to make sound predictions.
+
+
+
+### The **political aspect** {data-commentary-width=600}
 
 ```{r echo=FALSE, message=FALSE}
 
-ggplotly(SHUM)
+ggplotly(ukraine)
 
 ```
 
 ***
 
-My favorite Eurovision song by far is SHUM by Go_A. This Ukrainian electro-folk banger was performed during Eurovision 2021, which was held in Rotterdam. SHUM finished runner-up in the public vote and eventuallt 5th in the while contest.  The lyrics of the song is entirely in Ukraine and is a variation of Ukrainian folk songs which were sung in the "Shum" folk ritual.  Shum refers to the god or personification of the forest.
+**Non-political**
 
-Here we see a chromagram of SHUM. The song is nicely centered around E and B. 
+The Eurovision song contest aims to be of a non-political nature. Performers are precluded from promoting or referring to anything political or commercial, and could be disqualified because of it. However, political relations and tensions between countries tend to be reflected in performances and in voting (Wikipedia, 2022). 
 
-### Tempo {data-commentary-width=600}
+**Stefania**
 
-```{r, echo = FALSE, message = FALSE}
-plot(dist_temp)
-plot(Mean_tempo)
+An example of this is the huge popularity of the song "Stefania" by KALUSH, which is Ukraine's submission for this year's Eurovision song festival. The lyrics are non-politic, but can be seen as a metaphor for the war between Russia and Ukraine. The mother in the song is being askes to sing a lullaby, so everything becomes alright again. When interpreting the 'mother' in the song as 'Mother Ukraine', the song could be a plea for the end of the war. The song has become a characterizing for the Ukraine resistance against the Russion invasion and is popular in the hitlists of Poland, Moldavia, Lithuania and is a big hit on TikTok. Bookmakers have predicted that Ukraine has the biggest chance to be the winner of the Eurovision song festival 2022 with 35%. 
 
-```
+_Stefania mama, mama Stefania_
 
-***
+_The field is blooming and it's turning gray_
 
-In the line plot the development of mean tempo over time is shown. There is no clear trend visible. The mean tempo does stay neatly between 110 and 135 BPM, which is the average tempo of music in general. 
+_Sing me a lullaby, mama_
 
-In the histogram the distribution of tempi is shown of all the songfestival songs since 1980. The peak is at 120-130 BPM. The slowest tracks are "Moj Svijet" by Sergej Cetkovic, with a BPM of 53 and "Why Angels Cry" by Annet Artani with a BPM of 57. Both songs are calming and have a bit of a dramatic air to them.
-
-The highest tempo with 216 BPM is ironically "Standing Still" by Roman Lob. When listening to the song however, it is clear that it does not have a very high tempo, but rather a slow one. --Explanation why Spotify messed up--
+_I want to hear your native language_ 
 
 
-### Chordogram: Hard Rock Hallelujah {data-commentary-width=600}
+**Keygram**
+
+On the right a keygram is shown of the song. There song is nicely divided into seven parts, with the structure A B C B D A C. Here A is the refrain, from which the lyrics are shown above. Part B consists of rap. C is instrumental and contains traditional Ukrainian instruments. Part D, the bridge, is an old Ukrainian lullaby.
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2vHzOWRKYPLu8umRPIFuOq?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" data-external="1"></iframe>
 
 
-```{r, echo = FALSE, message = FALSE}
-plot(lordiplot)
-```
+**Over time**
 
-***
+In the line plot the development of mean tempo over time is shown. No clear trend is visible: the mean tempo variates but does stay neatly between 110 and 135 BPM, which is the average tempo of music in general. 
 
-Chordogram: Hard Rock Hallelujah
+**Between successful and unsuccessful songs**
 
+The boxplot shows the distribution of tempi of the highest and lowest 5 scoring Eurovision songs of all years. The tempo doesn't seem to differ a lot between groups. We can therefore conclude that tempo is not a distinguishing feature between succesful and unsuccesful Eurovision songs. 
 
 
 
@@ -203,3 +223,7 @@ Serrà, Joan, Álvaro Corral, Marián Boguñá, Martín Haro, and Josep Ll. Arco
 Wikipedia contributors. (2022, February 21). Rules of the Eurovision Song Contest. Wikipedia. https://en.wikipedia.org/wiki/Rules_of_the_Eurovision_Song_Contest
 
 Keith, E. (2022, February 15). Eurovision 2020: A breakdown of foreign composed songs. Wiwibloggs. https://wiwibloggs.com/2020/03/28/eurovision-2020-foreign-composed-songs/252694/
+
+Wikipedia contributors. (2022, 17 maart). Political controversies in the Eurovision Song Contest. Wikipedia. Geraadpleegd op 30 maart 2022, van https://en.wikipedia.org/wiki/Political_controversies_in_the_Eurovision_Song_Contest
+
+NOS. (2022, 23 maart). Oekraïens “strijdlied van de oorlog” maakt grote kans op winst Songfestival. Geraadpleegd op 30 maart 2022, van https://nos.nl/collectie/13888/artikel/2422422-oekraiens-strijdlied-van-de-oorlog-maakt-grote-kans-op-winst-songfestival

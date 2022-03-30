@@ -1,0 +1,25 @@
+---
+title: "Eurovision Analysis"
+author: "Cile van Marken"
+date: '2022-02-20'
+output: 
+  flexdashboard::flex_dashboard:
+    storyboard: true
+    theme: yeti
+    self_contained: false
+---
+
+loudness <-ggplot(all_data, aes(x = year, y = loudness)) + geom_point() + geom_smooth() + labs(x = "Year", y = "Loudness") + ggtitle("Loudness over time")
+
+https://open.spotify.com/playlist/7bPau0XlJ0OOCP6udNXILA?si=4d6689eb8786473e
+
+WORST
+https://open.spotify.com/playlist/3XgS8w8IzsXBR8UYuGoajW?si=d9bd0e599d3a4e45
+
+BEST
+https://open.spotify.com/playlist/72gvErKImf9XlsiWO1RipG?si=4c8d294656c8488d
+
+ class precision recall
+  <fct>     <dbl>  <dbl>
+1 Best      0.468  0.447
+2 Worst     0.491  0.512
