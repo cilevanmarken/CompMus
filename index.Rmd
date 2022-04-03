@@ -58,6 +58,8 @@ What stands out about the corpus is the variety in the songs. These range from b
 
 Besides looking into the trends in Eurovision songs, I am also interested in seeing if the development in Eurovision music is similar to the development of music in general. Research shows that over time the timbral palette gets more homogeneous, pitch transitions get more restricted and levels of loudness grow (Serrà, Corral, Boguñá, Haro, Arcos, 2012). 
 
+A link to the corpus is available on the last tab.
+
 
 ### **Trends** in Eurovision {data-commentary-width=600}
  
@@ -139,14 +141,18 @@ ggarrange(loudness + theme_minimal(), dist_timbre, nrow = 2)
 
 ***
 
-Research shows that over time the timbral palette gets more homogeneous, pitch transitions get more restricted and levels of loudness grow in music (Serrà, Corral, Boguñá, Haro, Arcos, 2012). Does this apply to Eurovision as well? 
+Now that we've looked at an overview using trends and zoomed in on some songs using SSM's, it might be interesting to if Eurovision follows the same trends as music in general. Research shows that over time the timbral palette gets more homogeneous, pitch transitions get more restricted and levels of loudness grow in music (Serrà, Corral, Boguñá, Haro, Arcos, 2012). Does this apply to Eurovision as well? 
 
 **Loudness**
 
-As we can see in the plot on the right, the levels of loudness do in fact grow in Eurovision. 
+As we can see in the plot on the right, the levels of loudness do in fact grow in Eurovision. As far as I could find, there aren't any restrictions on the loudness of recording of Eurovision songs. However, when performed live during the Eurovision contest, the volume is kept the same for all songs, so it won't have influence on the voting. The increase of loudness even has it's own nickname: the loudness war. This loudness war has been going on since the 1940s, when songs that were louder on a jukebox would stand out more compared to the rest (Wikipedia, 2022). 
+
+**Timbral palette**
+
+In the lower plot on the right, the standard deviation of timber per song has been plotted for every year. The to lines show the first and third quartile, which gives an indication of the distribution of data. The lines don't move farther away from each other in time, meaning that the width of the distribution of timbre doesn't get smaller over time. In less statistical terms: the timbral palette does not get more homogeneous over time in Eurovision songs. Eurovision songs differ on this point from general music.
 
 
-### Tempo {data-commentary-width=600}
+### Who will win? **Predicting using tempo** {data-commentary-width=600}
 
 ```{r, fig.show="hold", out.width="50%", echo = FALSE, message = FALSE}
 
@@ -155,7 +161,7 @@ ggarrange(Mean_tempo + theme_minimal() + ggtitle("Mean tempo over the years"), t
 
 ***
 
-The tempo of Eurovision songs has been analyzed in two ways: over time and between successful and unsuccessful Eurovision songs.
+Returning to the main question of this analysis: is it possible to predict if a song is successful or not on Eurovision. Our last analysis showed that Eurovision doesn't always follow the same trends as general music does. Which music is popular universally could be an indication of what kind of song would be popular on Eurovision, but it doesn't have to be. Another way of predicting this is using all previsous succesful and unsuccessful songs and see if there is causality in track features. Before we start with the all features, it might be nice to zoom in on one. Let's look at tempo. The tempo of Eurovision songs has been analyzed in two ways: over time and between successful and unsuccessful Eurovision songs.
 
 **Over time**
 
@@ -175,7 +181,7 @@ The boxplot shows the distribution of tempi of the highest and lowest 5 scoring 
 
 ***
 
-Past analyses have shown how trends in Eurovision songs change over time, how some songs that are seen as 'generic' look in chroma and timbre SSMs and how research about music in general is similar or not to Eurovision music. The main question still remains unanswered: is it possible to predict if a song is successful or not on Eurovision based on it's features? To investigate this, different techniques where used.
+Now we have taken a look at the relation between one feature and of a song is succesful or not on Eurovision, we move on to the big work. Is it possible to predict if a song is successful or not on Eurovision based on all it's features? To investigate this, different techniques where used.
 
 **Dendogram**
 
@@ -199,7 +205,7 @@ ggplotly(ukraine)
 
 **Non-political**
 
-The Eurovision song contest aims to be of a non-political nature. Performers are precluded from promoting or referring to anything political or commercial, and could be disqualified because of it. However, political relations and tensions between countries tend to be reflected in performances and in voting (Wikipedia, 2022). 
+We have seen in the past analysis that we can't predict if a song is succesful or not in Eurvision based on the Spotify track features. However, not only the track features attribute to which song score high and which don't. Another factor is politics. The Eurovision song contest aims to be of a non-political nature. Performers are precluded from promoting or referring to anything political or commercial, and could be disqualified because of it. However, political relations and tensions between countries tend to be reflected in performances and in voting (Wikipedia, 2022). 
 
 **Stefania**
 
@@ -223,7 +229,14 @@ On the right a keygram is shown of the song. There song is nicely divided into s
 
 ### **Conclusions** {data-commentary-width=600}
 
+In the end, we've concluded that it is not possible to predict if a song is going to win Eurovision or not based on it's track features. However, bookies still do a good job at predicting winners based on their own feeling of the song and other factors, like political ones. I am rather glad with this conclusion: if it would be so easy to find out what the perfect features of a successful Eurovision song were, all Eurovision songs would converge into the same generic form. It also shows the diversity of Eurovision: the songs that win are very different from one another and show a wide variety of music genres. Lastly, it also shows that a computer can't predict everything and that sometimes just plain listening to a song is more valuable than a whole statistical analysis. 
+
+
 ***
+
+**Corpus**
+
+The playlists for the corpus can be found on this profile: https://open.spotify.com/user/ciletjeeh?si=f650ea8d5b90460f and are ordered per year.
 
 **Sources**
 
@@ -236,3 +249,5 @@ Keith, E. (2022, February 15). Eurovision 2020: A breakdown of foreign composed 
 Wikipedia contributors. (2022, 17 maart). Political controversies in the Eurovision Song Contest. Wikipedia. Geraadpleegd op 30 maart 2022, van https://en.wikipedia.org/wiki/Political_controversies_in_the_Eurovision_Song_Contest
 
 NOS. (2022, 23 maart). Oekraïens “strijdlied van de oorlog” maakt grote kans op winst Songfestival. Geraadpleegd op 30 maart 2022, van https://nos.nl/collectie/13888/artikel/2422422-oekraiens-strijdlied-van-de-oorlog-maakt-grote-kans-op-winst-songfestival
+
+Wikipedia contributors. (2022a, februari 28). Loudness war. Wikipedia. Geraadpleegd op 3 april 2022, van https://en.wikipedia.org/wiki/Loudness_war
