@@ -23,3 +23,10 @@ https://open.spotify.com/playlist/72gvErKImf9XlsiWO1RipG?si=4c8d294656c8488d
   <fct>     <dbl>  <dbl>
 1 Best      0.468  0.447
 2 Worst     0.491  0.512
+
+https://open.spotify.com/track/2vHzOWRKYPLu8umRPIFuOq?si=3648485129c849d3
+
+```{r, fig.show="hold", out.width="50%", echo = FALSE, message = FALSE}
+plot(dendorgram + theme_minimal() + ggtitle("Dendogram of Eurovision 2020"))
+#ggplotly(IMPORTANCE + theme_minimal() + ggtitle("Features sorted on importance"))
+```
