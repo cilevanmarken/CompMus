@@ -152,7 +152,7 @@ As we can see in the plot on the right, the levels of loudness do in fact grow i
 In the lower plot on the right, the standard deviation of timber per song has been plotted for every year. The to lines show the first and third quartile, which gives an indication of the distribution of data. The lines don't move farther away from each other in time, meaning that the width of the distribution of timbre doesn't get smaller over time. In less statistical terms: the timbral palette does not get more homogeneous over time in Eurovision songs. Eurovision songs differ on this point from general music.
 
 
-### Who will win? **Predicting using tempo** {data-commentary-width=600}
+### Who will win? Predicting using **tempo** {data-commentary-width=600}
 
 ```{r, fig.show="hold", out.width="50%", echo = FALSE, message = FALSE}
 
